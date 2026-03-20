@@ -51,7 +51,10 @@ body {
     align-items: flex-start; /* Alinha o quadradinho ao topo da linha do H1 */
     width: 100%;
 }
-
+.redes-sociais {
+    display: flex;
+    gap: 10px;
+}
 /* O "Quadradinho" com fundo preto mais claro */
 .icone-redes {
     display: flex;
@@ -96,4 +99,33 @@ body {
     background-color: #21262D;
     padding: 1em;
     border-radius: 10px;
+    flex-wrap: wrap; 
+}
+
+.seta {
+    margin-left: auto; 
+    cursor: pointer;
+}
+.icone-seta{
+    padding: 4px;
+    background-color: #494c55; 
+    border-radius: 10px;
+}
+.icone-seta:hover {
+    background-color: #ffffff;
+    transition: 0.5s;
+
+}
+.descricao {
+    width: 100%; 
+    display: none;
+    margin-top: 10px;
+    color: #ccc;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 10px;
+}
+/* quando clicar */
+.lista.ativa .descricao {
+    display: block;
 }

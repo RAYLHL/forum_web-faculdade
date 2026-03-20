@@ -12,26 +12,65 @@
             <h1 class="titulo">Lista das Atividades</h1>
                 <div class="redes-sociais">
                     <div class="icone-redes"> 
-                        <a href="https://www.linkedin.com/..." target="_blank">
+                        <a href="https://www.linkedin.com/in/rayltsonhenrique-lemes/" target="_blank">
                             <img src="img/linkedin.png" alt="LinkedIn" width="30px">
                         </a>
-                        <a href="https://github.com/..." target="_blank">
+                    </div>
+                    <div class="icone-redes">
+                        <a href="https://github.com/RAYLHL" target="_blank">
                             <img src="img/github.png" alt="GitHub" width="30px">
                         </a>
                     </div>
+                    </div>
                 </div>
+                <p class="texto">Links das atividades desenvolvidas nas aulas de Responsive Web Development</p>
             </div>
-            <p class="texto">Links das atividades desenvolvidas nas aulas de Responsive Web Development</p>
     </div>
-        <div class="lista-atividades">
 
+        <div class="lista-atividades">
             <ul class="container-lista">
-            <li class="lista"><p>27/02/2026 </p><a href="Atividade-1/lobo.html" target="_blank">Atividade 1 : Animal de Estimação</a></li>
-            <li class="lista"><p>06/03/2026 </p><a href="Atividade-2/index.html" target="_blank">Atividade 2 : A Carta</a></li>
-            <li class="lista"><p>13/03/2026 </p><a href="Atividade-3/index.html" target="_blank">Atividade 3 : Link de Navegação</a></li>
-        </ul>
+                <li class="lista">
+                    <p>27/02/2026 </p>
+                    <a href="Atividade-1/lobo.html" target="_blank">
+                        Atividade 1 : Animal de Estimação
+                    </a>
+                    <span class="seta" onclick="toggleAtividade(this)"><img class="icone-seta" src="img/icone-seta.png" alt="icone da seta"></span>
+                    <div class="descricao">
+                        Descrição da atividade: Criar uma pagina em HTML falando um pouco sobre algum animal.
+                    </div>
+                </li>
+
+                <li class="lista">
+                    <p>06/03/2026 </p>
+                    <a href="Atividade-2/index.html" target="_blank">
+                        Atividade 2 : A Carta
+                    </a>
+                <span class="seta" onclick="toggleAtividade(this)"><img class="icone-seta" src="img/icone-seta.png" alt="icone da seta"></span>
+                    <div class="descricao">
+                        Descrição da atividade: Criar uma pagina em HTML sobre uma carta.
+                    </div>
+                </li>
+
+                <li class="lista">
+                    <p>13/03/2026 </p>
+                    <a href="Atividade-3/index.html" target="_blank">
+                        Atividade 3 : Link de Navegação
+                    </a>
+                    <span class="seta" onclick="toggleAtividade(this)"><img class="icone-seta" src="img/icone-seta.png" alt="icone da seta"></span>
+                    <div class="descricao">
+                       Descrição da atividade: Criar uma pagina em HTML com links de navegação no footer.
+                    </div>
+                </li>
+            </ul>
         </div>
       
     </main>
+
+   <script>
+    function toggleAtividade(element) {
+    const li = element.parentElement;
+    li.classList.toggle("ativa");
+    }
+    </script>
 </body>
 </html>
