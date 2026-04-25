@@ -1,0 +1,256 @@
+
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    --bg: #0d0d0f;
+    --surface: #141417;
+    --surface2: #1c1c21;
+    --surface3: #222228;
+    --border: rgba(255,255,255,0.06);
+    --border2: rgba(255,255,255,0.1);
+    --text: #e8e8f0;
+    --text-dim: #5a5a6e;
+    --accent: #e05252;
+    --accent2: #c03838;
+    --op: #4a90d9;
+    --op2: #2d6ab0;
+    --eq: #e05252;
+    --shadow: rgba(0,0,0,0.6);
+    --glow: rgba(224,82,82,0.15);
+  }
+
+  html, body {
+    height: 100%;
+    width: 100%;
+  }
+
+  body {
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'JetBrains Mono', monospace;
+    overflow: hidden;
+  }
+
+  /* Background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, rgba(224,82,82,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .calculator {
+    width: min(340px, 92vw);
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow:
+      0 40px 80px rgba(0,0,0,0.8),
+      0 0 0 1px var(--border),
+      inset 0 1px 0 rgba(255,255,255,0.06);
+    position: relative;
+    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* Display */
+  .display {
+    background: var(--surface2);
+    padding: 28px 24px 20px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .display::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(224,82,82,0.4), transparent);
+  }
+
+  .expression {
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    min-height: 18px;
+    text-align: right;
+    font-weight: 300;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 8px;
+    transition: color 0.2s;
+  }
+
+  .result {
+    font-size: clamp(32px, 8vw, 46px);
+    color: var(--text);
+    text-align: right;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all 0.15s;
+    line-height: 1.1;
+  }
+
+  .result.error { color: var(--accent); font-size: 22px; }
+  .result.animate { transform: scale(0.97); opacity: 0.7; }
+
+  /* Buttons grid */
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    padding: 0;
+  }
+
+  button {
+    background: var(--surface);
+    border: none;
+    padding: 0;
+    height: clamp(58px, 14vw, 74px);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(14px, 3.5vw, 18px);
+    font-weight: 500;
+    color: var(--text);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.12s, color 0.12s;
+    letter-spacing: 0.02em;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+
+  button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0);
+    transition: background 0.12s;
+  }
+
+  button:hover::before { background: rgba(255,255,255,0.04); }
+  button:active::before { background: rgba(255,255,255,0.08); }
+
+  button:active {
+    transform: scale(0.97);
+    transition: transform 0.06s, background 0.12s;
+  }
+
+  /* Button types */
+  button.num { background: var(--surface); }
+  button.num:hover { background: var(--surface3); }
+
+  button.zero {
+    grid-column: span 2;
+  }
+
+  button.op {
+    background: var(--surface2);
+    color: var(--op);
+    font-size: clamp(16px, 4vw, 22px);
+  }
+  button.op:hover { background: var(--surface3); }
+
+  button.fn {
+    background: var(--surface2);
+    color: var(--text-dim);
+    font-size: clamp(11px, 2.8vw, 14px);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+  button.fn:hover { background: var(--surface3); color: var(--text); }
+
+  button.eq {
+    background: var(--accent);
+    color: #fff;
+    font-size: clamp(18px, 4.5vw, 26px);
+  }
+  button.eq:hover { background: var(--accent2); }
+  button.eq::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  button.clear {
+    background: var(--surface2);
+    color: var(--accent);
+    font-size: clamp(12px, 3vw, 15px);
+    letter-spacing: 0.06em;
+  }
+  button.clear:hover { background: rgba(224,82,82,0.12); }
+
+  button.del {
+    background: var(--surface2);
+    color: var(--text-dim);
+  }
+  button.del:hover { background: var(--surface3); color: var(--text); }
+
+  /* Ripple effect */
+  .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    animation: rippleOut 0.4s ease-out forwards;
+    pointer-events: none;
+    transform: scale(0);
+  }
+  @keyframes rippleOut {
+    to { transform: scale(4); opacity: 0; }
+  }
+
+  /* Status bar on top */
+  .status-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px 0;
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+  }
+
+  .status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #2ecc71;
+    box-shadow: 0 0 6px #2ecc71;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }

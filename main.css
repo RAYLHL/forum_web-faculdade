@@ -1,3 +1,12 @@
+:root {
+  --primary-color: #5252ff;
+  --background-color: #151c23;
+  --card-background: #0D1117;
+  --icon-background: #2c2e33;
+  --text-color: white;
+  --description-color: #ccc;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -19,14 +28,14 @@ ul, ol {
 
 a {
   text-decoration: none;
-  color: #5252ff;
+  color: var(--primary-color);
 }
 
 body {
-    color: white;
+    color: var(--text-color);
     margin: 0;
     padding: 0;
-    background-color: #151B23;
+    background-color: var(--background-color);
     font-family: Arial, Helvetica, sans-serif;
 
     display: flex;
@@ -38,7 +47,7 @@ body {
 .main {
     width: 90%;
     max-width: 800px;
-    background-color: #0D1117;
+    background-color: var(--card-background);
 
     border-radius: 30px;
     border: 1px solid gray;
@@ -59,7 +68,7 @@ body {
 .icone-redes {
     display: flex;
     gap: 15px;                  /* Espaço entre os ícones */
-    background-color: #2c2e33;  /* Um cinza escuro/preto mais claro */
+    background-color: var(--icon-background);  /* Um cinza escuro/preto mais claro */
     padding: 10px;              /* Espaço interno para não encostar na borda */
     border-radius: 8px;         /* Cantos arredondados (opcional) */
     box-shadow: 0 4px 6px rgba(0,0,0,0.2); /* Sombra suave para dar profundidade */
@@ -96,7 +105,7 @@ body {
     display: flex;
     gap: 1rem;
     align-items: center;
-    background-color: #21262D;
+    background-color: var(--icon-background);
     padding: 1em;
     border-radius: 10px;
     flex-wrap: wrap; 
@@ -108,24 +117,29 @@ body {
 }
 .icone-seta{
     padding: 4px;
-    background-color: #494c55; 
     border-radius: 10px;
+    filter: brightness(0) invert(1);
 }
 .icone-seta:hover {
-    background-color: #ffffff;
+    background-color: var( --background-color);
     transition: 0.5s;
 
 }
 .descricao {
-    width: 100%; 
-    display: none;
-    margin-top: 10px;
-    color: #ccc;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    margin-top: 0;
+    padding: 0 10px;
+    color: var(--description-color);
     border: 1px solid gray;
     border-radius: 10px;
-    padding: 10px;
+
+    transition: all 0.3s ease;
 }
 /* quando clicar */
 .lista.ativa .descricao {
-    display: block;
+    max-height: 200px; /* ajusta conforme o tamanho */
+    margin-top: 10px;
+    padding: 10px;
 }
